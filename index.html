@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>فرح كريم & مها | الجمعة ١٣ مارس ٢٠٢٧</title>
 <meta name="description" content="يتشرّف السيد طارق محمد مرزوق (والد العريس) والسيد المهندس عبد الله عبد المنعم (والد العروسة) بدعوتكم لحضور حفل زفاف نجليهما كريم & مها — الجمعة ١٣ مارس ٢٠٢٧. يسعدنا ويشرّفنا حضوركم.">
-<meta name="theme-color" content="#0f3d33">
+<meta name="theme-color" content="#0e0e10">
 
 <!-- ====== برفيو اللينك (Open Graph) ====== -->
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <meta name="twitter:description" content="يتشرّف والد العريس ووالد العروسة بدعوتكم لحضور حفل زفاف كريم & مها.">
 <meta name="twitter:image" content="https://kareeem01000.github.io/-/og-image.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f3d33'/%3E%3Cpath d='M32 52C32 52 10 38 10 24a11 11 0 0 1 22-5 11 11 0 0 1 22 5c0 14-22 28-22 28Z' fill='%23c9a24b'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0e10'/%3E%3Cpath d='M32 52C32 52 10 38 10 24a11 11 0 0 1 22-5 11 11 0 0 1 22 5c0 14-22 28-22 28Z' fill='%23c9a24b'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,18 +33,19 @@
 <style>
 /* ===================== CONFIG-COLORS ===================== */
 :root{
-  --emerald:#0f3d33;
-  --emerald-2:#14574a;
-  --emerald-deep:#08241f;
+  --emerald:#0e0e10;
+  --emerald-2:#1b1b1f;
+  --emerald-deep:#060607;
   --gold:#c9a24b;
   --gold-2:#e6c877;
   --gold-soft:#f0dcae;
+  --gold-deep:#a9782a;
   --ivory:#fbf8f1;
   --cream:#f4ecdd;
   --ink:#2a2118;
   --muted:#7d6f5d;
-  --rose:#b98a7d;
-  --shadow:0 30px 60px -30px rgba(8,36,31,.45);
+  --rose:#b8424f;
+  --shadow:0 30px 60px -30px rgba(0,0,0,.5);
   --serif:'Cormorant Garamond', serif;
   --arabic:'Cairo', sans-serif;
   --display:'Amiri', serif;
@@ -70,7 +71,7 @@ body{
 
 /* ===================== MUSIC BTN ===================== */
 .music-btn{position:fixed;top:18px;left:18px;z-index:50;width:48px;height:48px;border-radius:50%;
-  border:1px solid rgba(201,162,75,.6);background:rgba(8,36,31,.55);backdrop-filter:blur(8px);
+  border:1px solid rgba(201,162,75,.6);background:rgba(10,10,12,.6);backdrop-filter:blur(8px);
   color:var(--gold-2);cursor:pointer;display:grid;place-items:center;font-size:18px;transition:.3s}
 .music-btn:hover{transform:scale(1.08);background:rgba(201,162,75,.2)}
 .music-btn.playing{animation:spin 4s linear infinite}
@@ -78,12 +79,12 @@ body{
 
 /* ===================== ENTRANCE (ROMANTIC) ===================== */
 .entrance{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;
-  background:radial-gradient(circle at 50% 28%,#1f6353 0%,#0e382f 46%,#061a16 100%);
+  background:radial-gradient(circle at 50% 28%,#1c1c20 0%,#0b0b0d 46%,#050506 100%);
   transition:opacity .85s ease, transform 1.1s ease}
 .entrance::before{content:"";position:absolute;inset:-25%;pointer-events:none;
   background:
     radial-gradient(circle at 50% 38%,rgba(201,162,75,.22),transparent 52%),
-    radial-gradient(circle at 82% 82%,rgba(217,79,92,.20),transparent 50%),
+    radial-gradient(circle at 82% 82%,rgba(184,66,79,.20),transparent 50%),
     radial-gradient(circle at 14% 18%,rgba(230,200,119,.16),transparent 45%);
   animation:glowPulse 8s ease-in-out infinite alternate}
 @keyframes glowPulse{from{transform:scale(1);opacity:.75}to{transform:scale(1.16);opacity:1}}
@@ -113,7 +114,7 @@ body{
   background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   animation:goldFlow 7s linear infinite;filter:drop-shadow(0 12px 28px rgba(201,162,75,.4))}
 .ent-mono .heart{font-size:.42em;color:var(--rose);-webkit-text-fill-color:var(--rose);
-  animation:beat 1.35s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(217,79,92,.85))}
+  animation:beat 1.35s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(184,66,79,.85))}
 @keyframes beat{0%,100%{transform:scale(1)}22%{transform:scale(1.25)}38%{transform:scale(.95)}55%{transform:scale(1.12)}}
 .ent-names{font-family:var(--display);font-size:clamp(24px,6vw,40px);color:#fff;margin-top:-2px}
 .ent-names .amp{font-family:var(--script);color:var(--gold-2);margin:0 6px}
@@ -161,13 +162,13 @@ body{
 
 /* ---- heart burst ---- */
 .pop-heart{position:fixed;z-index:1100;color:var(--rose);pointer-events:none;transform:translate(-50%,-50%);
-  animation:popHeart 1.6s ease-out forwards;filter:drop-shadow(0 0 10px rgba(217,79,92,.8))}
+  animation:popHeart 1.6s ease-out forwards;filter:drop-shadow(0 0 10px rgba(184,66,79,.8))}
 @keyframes popHeart{0%{opacity:1;transform:translate(-50%,-50%) scale(.3) rotate(0)}
   100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.35) rotate(20deg)}}
 
 /* ===================== ADMIN ===================== */
 .admin{position:fixed;inset:0;z-index:1200;display:none;place-items:center;padding:18px;
-  background:rgba(4,18,15,.82);backdrop-filter:blur(6px)}
+  background:rgba(4,4,6,.85);backdrop-filter:blur(6px)}
 .admin.show{display:grid}
 .admin-inner{width:min(900px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:20px;
   border:1px solid rgba(201,162,75,.5);box-shadow:var(--shadow);padding:clamp(20px,4vw,34px)}
@@ -225,7 +226,7 @@ footer{position:relative;z-index:10}
   animation:twinkle 3s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.95;transform:scale(1.15)}}
 
-.float-heart{position:fixed;bottom:-30px;z-index:13;pointer-events:none;color:rgba(217,79,92,.55);
+.float-heart{position:fixed;bottom:-30px;z-index:13;pointer-events:none;color:rgba(184,66,79,.55);
   animation:floatUp linear infinite}
 @keyframes floatUp{0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}
   12%{opacity:.85}88%{opacity:.5}100%{transform:translateY(-112vh) translateX(26px) rotate(24deg);opacity:0}}
@@ -310,7 +311,7 @@ footer{position:relative;z-index:10}
 .hero::before{content:"";position:absolute;inset:0;opacity:.35;
   background:
     radial-gradient(circle at 12% 18%,rgba(201,162,75,.35),transparent 40%),
-    radial-gradient(circle at 88% 82%,rgba(185,138,125,.30),transparent 45%);
+    radial-gradient(circle at 88% 82%,rgba(184,66,79,.22),transparent 45%);
   animation:shimmer 9s ease-in-out infinite alternate}
 @keyframes shimmer{from{transform:scale(1)}to{transform:scale(1.12)}}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
@@ -396,7 +397,7 @@ section.block{padding:clamp(64px,10vw,120px) 22px;position:relative}
 .card::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-2),var(--rose))}
 .card:hover{transform:translateY(-8px)}
 .card .ico{width:66px;height:66px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(145deg,var(--emerald),var(--emerald-2));color:var(--gold-2);font-size:26px;box-shadow:0 12px 24px -10px rgba(15,61,51,.7)}
+  background:linear-gradient(145deg,var(--emerald),var(--emerald-2));color:var(--gold-2);font-size:26px;box-shadow:0 12px 24px -10px rgba(13,13,15,.72)}
 .card h3{font-family:var(--display);font-size:24px;color:var(--emerald);margin-bottom:8px}
 .card p{color:var(--muted);font-size:15px}
 .card .big{font-family:var(--serif);font-size:22px;color:var(--ink);letter-spacing:1px}
@@ -419,12 +420,12 @@ section.block{padding:clamp(64px,10vw,120px) 22px;position:relative}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .tile{aspect-ratio:1/1;border-radius:14px;overflow:hidden;position:relative;display:grid;place-items:center;
   border:1px solid rgba(201,162,75,.4);box-shadow:var(--shadow);transition:.45s}
-.tile:nth-child(1){background:linear-gradient(135deg,#0f3d33,#1c6b57)}
-.tile:nth-child(2){background:linear-gradient(135deg,#6b4a2f,#b98a7d)}
-.tile:nth-child(3){background:linear-gradient(135deg,#143f5a,#2a6d8f)}
-.tile:nth-child(4){background:linear-gradient(135deg,#5a2a44,#a75f86)}
-.tile:nth-child(5){background:linear-gradient(135deg,#31502a,#6f9d52)}
-.tile:nth-child(6){background:linear-gradient(135deg,#4a3a13,#c9a24b)}
+.tile:nth-child(1){background:linear-gradient(135deg,#0e0e10,#2b2b31)}
+.tile:nth-child(2){background:linear-gradient(135deg,#1c160e,#9c7a2e)}
+.tile:nth-child(3){background:linear-gradient(135deg,#0b0b0d,#333026)}
+.tile:nth-child(4){background:linear-gradient(135deg,#141008,#c9a24b)}
+.tile:nth-child(5){background:linear-gradient(135deg,#151517,#43434b)}
+.tile:nth-child(6){background:linear-gradient(135deg,#0d0d0f,#d4af5c)}
 .tile .mono{font-family:var(--script);font-size:clamp(34px,7vw,58px);color:rgba(255,255,255,.92)}
 .tile::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(255,255,255,.25),transparent 60%)}
 .tile:hover{transform:scale(1.04) rotate(-1deg)}
@@ -793,7 +794,7 @@ footer small{color:rgba(255,255,255,.45);font-size:12px;display:block;margin-top
       <button class="btn solid" id="exportCsv">تصدير Excel / CSV</button>
       <button class="btn" id="adminClear">مسح القائمة</button>
     </div>
-    <p class="admin-note">دي الردود المخزّنة على الجهاز ده. عشان تجمّع أسماء كل المدعووين من كل الأجهزة تلقائيًا، اربط النموذج بـ Google Sheets عن طريق خانة <b>sheetEndpoint</b> في الإعدادات (شرحها تحت في الكود).</p>
+    <p class="admin-note">دي الردود المخزّنة على الجهاز ده. عشان تتسجّل كل الأسماء تلقائيًا من كل الأجهزة في Google Sheet وتوصلك إيميل فورًا، حطّ رابط Google Apps Script في خانة <b>sheetEndpoint</b> في الإعدادات (الشرح الكامل تحت في الكود).</p>
   </div>
 </div>
 
@@ -811,27 +812,51 @@ const CONFIG = {
   venueQuery: "Grand Wedding Hall, Cairo",   // نص البحث على خرائط جوجل
   whatsapp: "+201000889309",                 // رقم واتساب صاحب الفرح
   adminPassword: "karim2027",                // كلمة مرور لوحة المدعووين (غيّرها)
-  sheetEndpoint: "",                         // رابط Google Apps Script لجمع الأسماء من كل الأجهزة (اختياري)
+  sheetEndpoint: "https://script.google.com/macros/s/AKfycbyIxdcKmXJC5EINkIDRMJSlFqG3jexD33OYUbYic8AN52plylZeUaDh8t-cyZqkzsYx/exec",   // Google Apps Script: يجمع الأسماء من كل الأجهزة + إيميل فوري
   loveStart: "2021-06-01"                    // تاريخ بداية قصة الحب (لعدّاد الأيام في قسم الحب)
 };
 
 /*
-  ===== إزاي تعرف أسماء المدعووين؟ =====
-  1) على نفس الجهاز: اضغط 3 مرات على اسم "Karim & Maha" في آخر الصفحة (أو افتح الصفحة بإضافة #admin في الرابط)
-     واكتب كلمة المرور، هتلاقي كل الأسماء + زر تصدير Excel.
-  2) من كل الأجهزة (الطريقة الاحترافية):
-     - اعمل Google Sheet وفيه أعمدة: الاسم | الحضور | عدد الأفراد | رسالة | الوقت
-     - من القائمة: Extensions > Apps Script، والصق الكود ده:
+  ============================================================
+   إزاي تعرف مين سجّل؟  (Google Sheet + إيميل فوري)
+  ============================================================
+  1) على نفس الجهاز (بدون أي إعداد):
+     اضغط 3 مرات على "Karim & Maha" في آخر الصفحة، أو افتح الرابط وبعده #admin،
+     واكتب كلمة المرور → هتلاقي كل الأسماء + زر تصدير Excel.
 
-       function doPost(e){
-         var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-         var d = JSON.parse(e.postData.contents);
-         sheet.appendRow([d.name, d.attending?'هيحضر':'مش هيقدر', d.guests, d.note, new Date()]);
-         return ContentService.createTextOutput('ok');
-       }
+  2) من كل الأجهزة + يوصلك إيميل في نفس اللحظة (الموصى بها):
+     أ) افتح https://sheets.new واعمل جدول جديد.
+        في الصف الأول اكتب العناوين:  الاسم | الحضور | عدد الأفراد | رسالة | وقت الضيف | وقت الاستلام
+     ب) من القائمة: Extensions > Apps Script، امسح الكود والصق الكود ده (بدّل الإيميل):
 
-     - Deploy > New deployment > Web app، واختار "Anyone"، وخد الرابط.
-     - حطّ الرابط في sheetEndpoint فوق. وهتلاقي كل الأسماء بتتسجّل في الشيت لحظيًا من أي موبايل.
+        var MY_EMAIL = "اكتب_ايميلك_هنا@gmail.com";   // ← إيميلك عشان يوصلك إشعار فوري
+
+        function doPost(e){
+          var d = JSON.parse(e.postData.contents);
+          var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+          var now = new Date();
+          sheet.appendRow([d.name, d.attending?'هيحضر':'مش هيقدر', d.attending?d.guests:0, d.note, new Date(d.at||now), now]);
+          try{
+            MailApp.sendEmail({
+              to: MY_EMAIL,
+              subject: (d.attending?'تأكيد حضور - ':'اعتذار - ') + d.name,
+              htmlBody: '<div dir="rtl" style="font-family:Tahoma,Arial;font-size:16px">'
+                + '<h2>' + (d.attending?'تأكيد حضور':'اعتذار') + '</h2>'
+                + '<p><b>الاسم:</b> ' + d.name + '</p>'
+                + '<p><b>عدد الأفراد:</b> ' + (d.attending?d.guests:'-') + '</p>'
+                + '<p><b>رسالة:</b> ' + (d.note||'لا يوجد') + '</p>'
+                + '<p><b>وقت التسجيل:</b> ' + now.toLocaleString('ar-EG') + '</p></div>'
+            });
+          }catch(err){}
+          return ContentService.createTextOutput('ok');
+        }
+
+        function doGet(){ return ContentService.createTextOutput('ok'); }
+
+     ج) اضغط Deploy > New deployment > اختار "Web app" → Execute as: Me، Who has access: Anyone → Deploy (امنح الصلاحيات لو طلب).
+     د) هيديك رابط: https://script.google.com/macros/s/XXXX/exec  → انسخه وحطّه في sheetEndpoint تحت.
+     هـ) خلاص! كل تسجيل من أي موبايل يظهر في الشيت + يوصلك إيميل فورًا.
+  ============================================================
 */
 /* ======================================================== */
 
@@ -1003,7 +1028,7 @@ musicBtn.addEventListener('click', ()=>{
   const c = document.getElementById('petals');
   const ctx = c.getContext('2d');
   let W,H,petals=[];
-  const colors = ['#c9a24b','#e6c877','#f0dcae','#b98a7d','#ffffff'];
+  const colors = ['#c9a24b','#e6c877','#f0dcae','#b8424f','#ffffff'];
   function resize(){ W=c.width=innerWidth; H=c.height=innerHeight; }
   resize(); addEventListener('resize', resize);
   const N = innerWidth < 600 ? 18 : 34;
