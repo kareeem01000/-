@@ -7,15 +7,15 @@
 <meta name="description" content="يتشرّف السيد طارق محمد مرزوق (والد العريس) والسيد المهندس عبد الله عبد المنعم (والد العروسة) بدعوتكم لحضور حفل زفاف نجليهما كريم & مها — الجمعة ١٣ مارس ٢٠٢٧. يسعدنا ويشرّفنا حضوركم.">
 <meta name="theme-color" content="#0f3d33">
 
-<!-- ====== برفيو اللينك: بدّل USERNAME و REPO برابط GitHub Pages بتاعك ====== -->
+<!-- ====== برفيو اللينك (Open Graph) ====== -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="فرح كريم & مها">
 <meta property="og:locale" content="ar_EG">
 <meta property="og:title" content="💍 فرح كريم & مها — الجمعة ١٣ مارس ٢٠٢٧">
 <meta property="og:description" content="يتشرّف والد العريس السيد طارق محمد مرزوق ووالد العروسة السيد المهندس عبد الله عبد المنعم بدعوتكم لحضور حفل زفاف نجليهما كريم & مها. يسعدنا تشريفكم.">
-<meta property="og:url" content="https://USERNAME.github.io/REPO/">
-<meta property="og:image" content="https://USERNAME.github.io/REPO/og-image.png">
-<meta property="og:image:secure_url" content="https://USERNAME.github.io/REPO/og-image.png">
+<meta property="og:url" content="https://kareeem01000.github.io/-/">
+<meta property="og:image" content="https://kareeem01000.github.io/-/og-image.png">
+<meta property="og:image:secure_url" content="https://kareeem01000.github.io/-/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="💍 فرح كريم & مها — الجمعة ١٣ مارس ٢٠٢٧">
 <meta name="twitter:description" content="يتشرّف والد العريس ووالد العروسة بدعوتكم لحضور حفل زفاف كريم & مها.">
-<meta name="twitter:image" content="https://USERNAME.github.io/REPO/og-image.png">
+<meta name="twitter:image" content="https://kareeem01000.github.io/-/og-image.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f3d33'/%3E%3Cpath d='M32 52C32 52 10 38 10 24a11 11 0 0 1 22-5 11 11 0 0 1 22 5c0 14-22 28-22 28Z' fill='%23c9a24b'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="og-image.png">
@@ -101,10 +101,8 @@ body{
 .ent-stage > *:nth-child(2){animation-delay:.42s}
 .ent-stage > *:nth-child(3){animation-delay:.58s}
 .ent-stage > *:nth-child(4){animation-delay:.80s}
-.ent-stage > *:nth-child(5){animation-delay:.96s}
-.ent-stage > *:nth-child(6){animation-delay:1.12s}
-.ent-stage > *:nth-child(7){animation-delay:1.35s}
-.ent-stage > *:nth-child(8){animation-delay:1.65s}
+.ent-stage > *:nth-child(5){animation-delay:1.05s}
+.ent-stage > *:nth-child(6){animation-delay:1.35s}
 @keyframes stageIn{to{opacity:1;transform:none}}
 
 .ent-bism{font-family:var(--display);color:var(--gold-soft);font-size:clamp(15px,3.4vw,20px);opacity:.9}
@@ -511,8 +509,6 @@ footer small{color:rgba(255,255,255,.45);font-size:12px;display:block;margin-top
     <p class="ent-bism">&#1576;&#1587;&#1605; &#1575;&#1604;&#1604;&#1607; &#1575;&#1604;&#1585;&#1581;&#1605;&#1606; &#1575;&#1604;&#1585;&#1581;&#1610;&#1605;</p>
     <p class="ent-tag">حكاية حب بدأت… وتكتمل بحضوركم</p>
     <div class="crown" data-crown></div>
-    <div class="ent-mono"><span class="k">K</span><span class="heart">&#10084;</span><span class="m">M</span></div>
-    <p class="ent-names">كريم <span class="amp">&amp;</span> مها</p>
     <p class="ent-date">13 . 03 . 2027</p>
 
     <div class="envelope" id="envelope">
@@ -546,7 +542,7 @@ footer small{color:rgba(255,255,255,.45);font-size:12px;display:block;margin-top
 <button class="music-btn" id="musicBtn" aria-label="تشغيل الموسيقى" title="موسيقى">
   <span id="musicIcon">&#9835;</span>
 </button>
-<audio id="bgm" loop preload="auto" playsinline>
+<audio id="bgm" loop preload="none" playsinline>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -972,6 +968,20 @@ document.getElementById('calendarBtn').addEventListener('click', ()=>{
 const bgm = document.getElementById('bgm');
 const musicBtn = document.getElementById('musicBtn');
 const musicIcon = document.getElementById('musicIcon');
+
+/* ---------- تحميل الأغنية كاملة في الذاكرة (يمنع التقطيع) ---------- */
+(function preloadAudio(){
+  const file = 'music.mp3';
+  if(!window.fetch){ bgm.src = file; return; }
+  fetch(file, { cache: 'force-cache' })
+    .then(r => { if(!r.ok) throw new Error('load'); return r.blob(); })
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      if(bgm.paused){ bgm.src = url; bgm.load(); }
+    })
+    .catch(() => { bgm.src = file; });
+})();
+
 musicBtn.addEventListener('click', ()=>{
   if(bgm.paused){
     bgm.volume = .5;
@@ -996,7 +1006,7 @@ musicBtn.addEventListener('click', ()=>{
   const colors = ['#c9a24b','#e6c877','#f0dcae','#b98a7d','#ffffff'];
   function resize(){ W=c.width=innerWidth; H=c.height=innerHeight; }
   resize(); addEventListener('resize', resize);
-  const N = innerWidth < 600 ? 34 : 60;
+  const N = innerWidth < 600 ? 18 : 34;
   function make(){
     return { x:Math.random()*W, y:Math.random()*H, r:Math.random()*3+1,
       vy:Math.random()*0.6+0.25, vx:Math.random()*0.5-0.25,
@@ -1083,7 +1093,7 @@ document.addEventListener('keydown', e=>{
   const cols = ['#e8b4b8','#f0c9c2','#d98a94','#c9525f','#e6c877','#f5d9b0','#ffffff'];
   function rs(){ W = c.width = innerWidth; H = c.height = innerHeight; }
   rs(); addEventListener('resize', rs);
-  const N = innerWidth < 600 ? 46 : 88;
+  const N = innerWidth < 600 ? 24 : 46;
   function mk(){ return { x:Math.random()*W, y:Math.random()*H, r:Math.random()*4 + 2,
     vy:Math.random()*1.2 + .5, vx:Math.random()*.7 - .35, a:Math.random()*6.28,
     va:Math.random()*.05 - .025, col:cols[(Math.random()*cols.length)|0],
@@ -1121,7 +1131,7 @@ const CROWN_SVG = '<svg viewBox="0 0 120 62"><defs><linearGradient id="cg" x1="0
 document.querySelectorAll('[data-crown]').forEach(el=> el.innerHTML = CROWN_SVG);
 
 (function sparkles(){
-  const n = innerWidth < 600 ? 26 : 48;
+  const n = innerWidth < 600 ? 14 : 28;
   for(let i=0;i<n;i++){
     const s = document.createElement('span');
     s.className = 'sparkle';
@@ -1135,7 +1145,7 @@ document.querySelectorAll('[data-crown]').forEach(el=> el.innerHTML = CROWN_SVG)
   }
 })();
 (function hearts(){
-  const n = innerWidth < 600 ? 10 : 18;
+  const n = innerWidth < 600 ? 6 : 11;
   for(let i=0;i<n;i++){
     const h = document.createElement('span');
     h.className = 'float-heart';
