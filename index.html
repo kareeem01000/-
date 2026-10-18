@@ -114,20 +114,85 @@ section.block{padding:clamp(84px,13vw,172px) 24px;position:relative}
 .ent-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:34px 0 40px;color:var(--rose)}
 .ent-rule::before,.ent-rule::after{content:"";height:1px;width:clamp(46px,15vw,96px);background:currentColor;opacity:.65}
 .ent-rule i{width:7px;height:7px;border:1px solid currentColor;transform:rotate(45deg)}
-.ent-seal-wrap{position:relative;display:inline-block}
-.envelope{position:relative;display:inline-block;z-index:2}
-.seal{position:relative;width:172px;height:172px;border-radius:50%;border:1px solid var(--rose);
-  background:radial-gradient(circle,#fffdfb,#fbe6ea);cursor:pointer;display:grid;place-items:center;
-  transition:.5s;box-shadow:0 14px 40px rgba(185,106,125,.24)}
-.seal::before{content:"";position:absolute;inset:12px;border-radius:50%;border:1px solid rgba(215,138,156,.6);transition:.5s}
-.seal::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(215,138,156,.35);
+.ent-seal-wrap{position:relative;display:inline-block;perspective:1500px}
+.envelope{position:relative;display:inline-block;z-index:2;width:min(84vw,340px);height:216px;transform-style:preserve-3d;will-change:transform}
+.envelope::after{content:"";position:absolute;left:10%;right:10%;bottom:-24px;height:32px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(150,80,98,.36),transparent 70%);filter:blur(4px);
+  animation:shadowIdle 7s ease-in-out infinite}
+@keyframes shadowIdle{0%,100%{transform:scaleX(1);opacity:.9}50%{transform:scaleX(.92);opacity:.7}}
+.env-3d{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(8deg);will-change:transform;
+  animation:envFloat 7s ease-in-out infinite}
+@keyframes envFloat{0%,100%{transform:rotateX(8deg) rotateY(-5deg)}50%{transform:rotateX(3deg) rotateY(5deg)}}
+.env-back{position:absolute;inset:0;border-radius:8px;transform:translateZ(-6px);
+  background:linear-gradient(180deg,#f3cdd6,#e5b0bd);box-shadow:inset 0 2px 0 rgba(255,255,255,.5)}
+.env-halo{position:absolute;left:2%;right:2%;top:0;height:100%;transform:translateZ(0) scale(.6);opacity:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,247,249,.95),rgba(255,247,249,0) 68%);will-change:transform,opacity}
+.env-letter{position:absolute;left:7%;right:7%;top:7%;height:86%;border-radius:8px;transform:translateZ(1px);will-change:transform;
+  background:linear-gradient(180deg,#fffefc,#fbe9ed);border:1px solid rgba(215,138,156,.5);display:grid;place-items:center;
+  gap:8px;overflow:hidden;box-shadow:0 6px 20px rgba(185,106,125,.2)}
+.env-letter::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.85) 50%,transparent 58%);
+  transform:translateX(-130%);animation:shine 5.5s ease-in-out infinite}
+@keyframes shine{0%,60%{transform:translateX(-130%)}80%,100%{transform:translateX(130%)}}
+.env-letter b{font-family:var(--serif);letter-spacing:.14em;color:var(--rose-deep);font-size:34px;line-height:1}
+.env-letter b i{font-style:italic;font-size:24px;color:var(--rose);margin:0 4px}
+.env-letter small{font-family:var(--serif);letter-spacing:.34em;color:var(--rose);font-size:11px}
+.env-pocket{position:absolute;inset:0;border-radius:8px;transform:translateZ(6px);
+  background:linear-gradient(180deg,#f7dde4,#ebbcc8);clip-path:polygon(0 0,50% 42%,100% 0,100% 100%,0 100%)}
+.env-pocket::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent 32%)}
+.env-flap{position:absolute;left:0;right:0;top:0;height:58%;transform-origin:top center;will-change:transform;
+  transform:translateZ(4px) rotateX(0deg);clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#f8d9e0,#e5a5b4)}
+.env-flap::after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);
+  background:linear-gradient(180deg,rgba(120,60,75,.18),transparent 55%)}
+.seal{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%) translateZ(14px);width:118px;height:118px;
+  border-radius:50%;border:1px solid var(--rose);background:radial-gradient(circle at 38% 32%,#fffdfb,#f6d9e0);
+  cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 26px rgba(185,106,125,.36);will-change:transform,opacity}
+.seal::before{content:"";position:absolute;inset:9px;border-radius:50%;border:1px solid rgba(215,138,156,.6)}
+.seal::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(215,138,156,.4);
   animation:sealPulse 3s ease-in-out infinite}
-@keyframes sealPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.07);opacity:1}}
+@keyframes sealPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.08);opacity:1}}
+.seal-mono{font-family:var(--serif);font-size:34px;letter-spacing:1px;color:var(--rose-deep);line-height:1}
+.seal-mono span{font-style:italic;color:var(--rose);font-size:24px;margin:0 3px}
 .seal:hover{border-color:var(--rose-deep)}
 .seal:hover::before{border-color:var(--rose-deep)}
-.seal-mono{font-family:var(--serif);font-size:50px;letter-spacing:2px;color:var(--rose-deep);line-height:1}
-.seal-mono span{font-style:italic;color:var(--rose);font-size:36px;margin:0 4px}
-.seal.open{transform:scale(.55);opacity:0}
+.seal-ring{position:absolute;left:50%;top:58%;width:118px;height:118px;margin:-59px 0 0 -59px;border-radius:50%;
+  border:2px solid rgba(215,138,156,.85);opacity:0;pointer-events:none;transform:translateZ(14px)}
+.seal-flash{position:absolute;left:50%;top:58%;width:118px;height:118px;margin:-59px 0 0 -59px;border-radius:50%;
+  background:radial-gradient(circle,#fff,rgba(255,255,255,0) 70%);opacity:0;pointer-events:none;transform:translateZ(20px)}
+/* ============ SEQUENCE: فتح الظرف ثلاثي الأبعاد ============ */
+.entrance.open .env-3d{animation:envTilt 1.4s cubic-bezier(.2,.8,.25,1) forwards}
+@keyframes envTilt{
+  0%{transform:rotateX(8deg) rotateY(-5deg) scale(1)}
+  35%{transform:rotateX(-8deg) rotateY(0deg) scale(1.04)}
+  100%{transform:rotateX(-5deg) rotateY(0deg) scale(1.05) translateY(-10px)}}
+.entrance.open .seal{animation:sealBreak .6s cubic-bezier(.42,0,.7,.2) forwards}
+@keyframes sealBreak{
+  0%{transform:translate(-50%,-50%) translateZ(14px) scale(1) rotate(0deg);filter:none}
+  22%{transform:translate(-50%,-50%) translateZ(16px) scale(1.16) rotate(0deg);filter:brightness(1.3)}
+  62%{transform:translate(-50%,-50%) translateZ(46px) scale(.5) rotate(30deg);filter:brightness(1.7)}
+  100%{transform:translate(-50%,-50%) translateZ(46px) scale(.1) rotate(75deg);opacity:0;filter:brightness(2)}}
+.entrance.open .seal::after{animation:none;opacity:0}
+.entrance.open .seal-ring{animation:sealBurst 1s ease-out forwards}
+@keyframes sealBurst{0%{transform:translateZ(14px) scale(.55);opacity:.95}100%{transform:translateZ(14px) scale(3.6);opacity:0}}
+.entrance.open .seal-flash{animation:flashPop .55s ease-out forwards}
+@keyframes flashPop{0%{opacity:0;transform:translateZ(20px) scale(.4)}25%{opacity:.95;transform:translateZ(20px) scale(1.6)}100%{opacity:0;transform:translateZ(20px) scale(3)}}
+.entrance.open .env-flap{animation:flapOpen 1.05s cubic-bezier(.36,.02,.22,1) .2s forwards}
+@keyframes flapOpen{
+  0%{transform:translateZ(4px) rotateX(0deg)}
+  52%{transform:translateZ(4px) rotateX(-104deg)}
+  100%{transform:translateZ(4px) rotateX(-180deg)}}
+.entrance.open .env-letter{animation:letterOut 1.3s cubic-bezier(.2,.86,.26,1) .58s forwards}
+@keyframes letterOut{
+  0%{transform:translateY(0) translateZ(1px) scale(1)}
+  58%{transform:translateY(-44%) translateZ(90px) scale(1.07) rotateX(-6deg)}
+  100%{transform:translateY(-74%) translateZ(165px) scale(1.16) rotateX(-10deg)}}
+.entrance.open .env-halo{animation:haloOut 1.3s cubic-bezier(.2,.86,.26,1) .58s forwards}
+@keyframes haloOut{
+  0%{opacity:0;transform:translateZ(0) scale(.6)}
+  55%{opacity:.9;transform:translateZ(70px) scale(1.15)}
+  100%{opacity:.85;transform:translateZ(150px) scale(1.35)}}
+.entrance.open .env-back,.entrance.open .env-pocket{animation:envFade 1.3s ease-out .58s forwards}
+@keyframes envFade{0%{opacity:1}100%{opacity:.25}}
 .ent-date{font-family:var(--serif);letter-spacing:.4em;color:var(--rose-deep);font-size:clamp(14px,3.4vw,19px);margin-top:50px;padding-inline-start:.4em}
 .ent-hint{margin-top:38px;color:var(--ink);opacity:.72;letter-spacing:4px;font-size:14px;font-weight:400}
 .ent-hint b{display:block;font-weight:400;font-size:22px;margin-top:12px;color:var(--rose);animation:bobY 2.2s ease-in-out infinite}
@@ -339,6 +404,39 @@ footer small{color:rgba(255,255,255,.5);font-size:12px;display:block;font-weight
   .entrance::before,.entrance::after,.hero::before,.hero::after{width:110px;height:200px;opacity:.7}
 }
 
+/* ===================== PETALS ===================== */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:900;overflow:hidden}
+.petal{position:absolute;top:-6vh;width:14px;height:14px;opacity:0;border-radius:60% 0 60% 0;
+  background:radial-gradient(circle at 32% 28%,#ffdbe3,#e79fb2);animation:petalFall linear infinite}
+@keyframes petalFall{
+  0%{transform:translate3d(0,-6vh,0) rotate(0deg) scale(.9);opacity:0}
+  12%{opacity:.75}
+  85%{opacity:.55}
+  100%{transform:translate3d(var(--dx,24px),112vh,0) rotate(680deg) scale(1);opacity:0}}
+@media (prefers-reduced-motion: reduce){ .petals{display:none} }
+
+/* ===================== MAP ===================== */
+.map-block{margin-top:clamp(26px,4.5vw,44px)}
+.map-embed{width:100%;height:clamp(270px,42vw,420px);border:1px solid var(--rose-line);border-radius:8px;display:block;
+  filter:saturate(.92) contrast(.98)}
+.map-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.map-note{text-align:center;color:var(--muted);font-size:13.5px;font-weight:300;margin-top:18px;line-height:2}
+
+/* ===================== SHARE + CALENDAR ===================== */
+.share-sec{background:linear-gradient(180deg,#fffaf6,#fbeae6)}
+.share-grid{display:grid;grid-template-columns:1fr 1fr .9fr;gap:clamp(14px,2.4vw,22px);align-items:stretch}
+.share-card{border:1px solid var(--rose-line);background:rgba(255,255,255,.62);border-radius:10px;
+  padding:clamp(22px,3vw,34px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.share-ico{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:24px;
+  background:var(--rose-soft);color:var(--rose-deep);border:1px solid rgba(215,138,156,.4)}
+.share-card h3{font-family:var(--display);font-size:22px;color:var(--ink);font-weight:700}
+.share-card p{color:var(--muted);font-size:14px;font-weight:300;line-height:1.9;flex:1}
+.share-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.share-btns .btn{padding:12px 24px;font-size:13.5px}
+.qr-card{justify-content:center}
+.qr-card img{width:min(190px,60%);height:auto;border:1px solid var(--rose-line);border-radius:8px;background:#fff;padding:10px}
+@media (max-width:760px){ .share-grid{grid-template-columns:1fr} }
+
 </style>
 </head>
 <body>
@@ -355,9 +453,18 @@ footer small{color:rgba(255,255,255,.5);font-size:12px;display:block;font-weight
     <div class="ent-rule"><i></i></div>
     <div class="ent-seal-wrap">
       <div class="envelope" id="envelope">
-        <button class="seal" id="openBtn" aria-label="افتح الدعوة">
-          <span class="seal-mono">K<span>&amp;</span>M</span>
-        </button>
+        <div class="env-3d">
+          <div class="env-back"></div>
+          <div class="env-halo"></div>
+          <div class="env-letter"><b>K<i>&amp;</i>M</b><small>13 . 03 . 2027</small></div>
+          <div class="env-pocket"></div>
+          <div class="env-flap"></div>
+          <span class="seal-flash"></span>
+          <span class="seal-ring"></span>
+          <button class="seal" id="openBtn" aria-label="افتح الدعوة">
+            <span class="seal-mono">K<span>&amp;</span>M</span>
+          </button>
+        </div>
       </div>
     </div>
     <p class="ent-date">13 . 03 . 2027</p>
@@ -469,6 +576,13 @@ footer small{color:rgba(255,255,255,.5);font-size:12px;display:block;font-weight
         <a class="map-link" id="mapLink" href="#" target="_blank" rel="noopener">عرض على الخريطة &#8599;</a>
       </div>
     </div>
+    <div class="map-block reveal d1">
+      <iframe class="map-embed" id="mapEmbed" title="خريطة المكان" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="map-actions">
+        <a class="btn solid" id="dirBtn" target="_blank" rel="noopener">اتجه للقاعة &#8599;</a>
+      </div>
+      <p class="map-note">القاعة جوه مركز شباب الخارجة (الساحة)، الخارجة — الوادي الجديد. قدام المبنى فيه أماكن انتظار للعربيات، ولو محتاج مساعدة في الطريق كلّمنا على واتساب.</p>
+    </div>
   </div>
 </section>
 
@@ -481,10 +595,9 @@ footer small{color:rgba(255,255,255,.5);font-size:12px;display:block;font-weight
       <p>كل حكاية حب بتبدأ بلحظة… ودول كانوا أجمل لحظاتنا</p>
     </div>
     <div class="timeline">
-      <div class="tl-item reveal"><p class="yr">2021</p><h3>أول لقاء</h3><p>كانت أول مرة نتقابل فيها… وقلوبنا عرفت إن دي بداية حاجة كبيرة.</p></div>
-      <div class="tl-item reveal d1"><p class="yr">2023</p><h3>أول وعد</h3><p>وعدنا بعض إننا نكمل الطريق مع بعض مهما كان، والضحكة ما تفارقنا.</p></div>
-      <div class="tl-item reveal d2"><p class="yr">2026</p><h3>الطلب الرسمي</h3><p>جت اللحظة اللي كنا مستنيينها، وقالت أيوة… ومن هنا بدأت الفرحة.</p></div>
-      <div class="tl-item reveal d3"><p class="yr">2027</p><h3>ليلة العمر</h3><p>والميعاد اللي بانتظاره بكل شوق… بيكتمل بحضوركم الغالي.</p></div>
+      <div class="tl-item reveal"><p class="yr">٢٠٢٦</p><h3>أول لقاء</h3><p>٢٤ يوليو ٢٠٢٦… أول مرة نتقابل فيها، وقلوبنا عرفت إن دي بداية حاجة كبيرة.</p></div>
+      <div class="tl-item reveal d1"><p class="yr">٢٠٢٦</p><h3>الخطوبة</h3><p>١٠ سبتمبر ٢٠٢٦… اليوم اللي قلنا فيه أيوة، وبدأنا نحلم سوا بليلة العمر.</p></div>
+      <div class="tl-item reveal d2"><p class="yr">٢٠٢٧</p><h3>ليلة العمر</h3><p>١٣ مارس ٢٠٢٧… الميعاد اللي بنستناه بكل شوق، وبيكتمل بحضوركم الغالي.</p></div>
     </div>
   </div>
 </section>
@@ -506,10 +619,45 @@ footer small{color:rgba(255,255,255,.5);font-size:12px;display:block;font-weight
       <h2>قاعة اللؤلؤة</h2>
     </div>
     <div class="gallery reveal d1">
-      <div class="tile has-img"><img src="venue-1.jpg" alt="قاعة اللؤلؤة — مركز شباب الخارجة (الساحة)"></div>
-      <div class="tile has-img"><img src="venue-2.jpg" alt="قاعة اللؤلؤة — مركز شباب الخارجة (الساحة)"></div>
+      <div class="tile has-img"><img src="venue-1.jpg" alt="قاعة اللؤلؤة — مركز شباب الخارجة (الساحة)" width="1600" height="1068" loading="lazy" decoding="async"></div>
+      <div class="tile has-img"><img src="venue-2.jpg" alt="قاعة اللؤلؤة — مركز شباب الخارجة (الساحة)" width="1600" height="1068" loading="lazy" decoding="async"></div>
     </div>
     <p class="gallery-note reveal d2">قاعة اللؤلؤة — مركز شباب الخارجة (الساحة)، الوادي الجديد. اضغط على أي صورة لتكبيرها.</p>
+  </div>
+</section>
+
+<!-- ============ SHARE + CALENDAR ============ -->
+<section class="block share-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Save &amp; Share</p>
+      <h2>احفظ الموعد وشارك الفرحة</h2>
+      <p>ضيف الفرح في تقويمك، وابعت الدعوة لأصحابك وحبايبك</p>
+    </div>
+    <div class="share-grid reveal d1">
+      <div class="share-card">
+        <div class="share-ico">&#128197;</div>
+        <h3>أضف للتقويم</h3>
+        <p>هيفضل محفوظ عندك ومش هتنسى اليوم بإذن الله</p>
+        <div class="share-btns">
+          <a class="btn solid" id="gcalBtn" target="_blank" rel="noopener">Google Calendar</a>
+          <button class="btn" id="icsBtn">Apple / Outlook</button>
+        </div>
+      </div>
+      <div class="share-card">
+        <div class="share-ico">&#128227;</div>
+        <h3>شارك الدعوة</h3>
+        <p>ابعت اللينك لكل اللي تحبهم يشاركونا فرحتنا</p>
+        <div class="share-btns">
+          <a class="btn solid" id="shareWa" target="_blank" rel="noopener">واتساب</a>
+          <button class="btn" id="copyLink">انسخ اللينك</button>
+        </div>
+      </div>
+      <div class="share-card qr-card">
+        <img src="qr-code.png" alt="QR code للدعوة" width="420" height="420" loading="lazy" decoding="async">
+        <p>امسح الكود بكاميرا الموبايل</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -624,7 +772,7 @@ const CONFIG = {
   whatsapp: "+201000889309",                 // رقم واتساب صاحب الفرح
   adminPassword: "karim2027",                // كلمة مرور لوحة المدعووين (غيّرها)
   sheetEndpoint: "https://script.google.com/macros/s/AKfycbyIxdcKmXJC5EINkIDRMJSlFqG3jexD33OYUbYic8AN52plylZeUaDh8t-cyZqkzsYx/exec",   // Google Apps Script: يجمع الأسماء من كل الأجهزة + إيميل فوري
-  loveStart: "2021-06-01"                    // تاريخ بداية قصة الحب (لعدّاد الأيام في قسم الحب)
+  loveStart: "2026-07-24"                    // تاريخ بداية قصة الحب (لعدّاد الأيام في قسم الحب)
 };
 
 /*
@@ -679,6 +827,62 @@ document.getElementById('dateAr').textContent = CONFIG.dateAr;
 document.getElementById('mapLink').href =
   "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.venueQuery);
 
+/* ---------- خريطة مدمجة + اتجاهات ---------- */
+(function(){
+  const q = CONFIG.venueQuery || CONFIG.venue;
+  const emb = document.getElementById('mapEmbed');
+  if(emb) emb.src = "https://maps.google.com/maps?q=" + encodeURIComponent(q) + "&z=15&output=embed";
+  const dir = document.getElementById('dirBtn');
+  if(dir) dir.href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(q);
+})();
+
+/* ---------- رابط الموقع + مشاركة + تقويم ---------- */
+const SITE_URL = location.origin + location.pathname;
+const gcalFmt = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+function calendarICS(){
+  const start = new Date(CONFIG.dateISO);
+  const end = new Date(start.getTime() + 5*3600000);
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//KarimMaha//Wedding//AR','BEGIN:VEVENT',
+    'UID:' + Date.now() + '@karim-maha',
+    'DTSTAMP:' + gcalFmt(new Date()),
+    'DTSTART:' + gcalFmt(start),
+    'DTEND:' + gcalFmt(end),
+    'SUMMARY:فرح ' + CONFIG.groom + ' و ' + CONFIG.bride,
+    'LOCATION:' + CONFIG.venue + ' - ' + CONFIG.venueSub,
+    'DESCRIPTION:يسعدنا حضوركم',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'karim-maha-wedding.ics';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+(function(){
+  const wa = document.getElementById('shareWa');
+  if(wa) wa.href = "https://wa.me/?text=" + encodeURIComponent("دعوة فرح " + CONFIG.groom + " و" + CONFIG.bride + " — تشرفنا بحضورك: " + SITE_URL);
+  const cl = document.getElementById('copyLink');
+  if(cl) cl.addEventListener('click', ()=>{
+    const done = ()=>{ const t = cl.textContent; cl.textContent = 'تم النسخ ✓'; setTimeout(()=>cl.textContent = t, 1700); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(SITE_URL).then(done).catch(()=>{}); }
+    else { const i = document.createElement('input'); i.value = SITE_URL; document.body.appendChild(i); i.select(); try{ document.execCommand('copy'); done(); }catch(_){} i.remove(); }
+  });
+  const ib = document.getElementById('icsBtn');
+  if(ib) ib.addEventListener('click', calendarICS);
+  const gc = document.getElementById('gcalBtn');
+  if(gc){
+    const start = new Date(CONFIG.dateISO);
+    const end = new Date(start.getTime() + 5*3600000);
+    gc.href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent('فرح ' + CONFIG.groom + ' و ' + CONFIG.bride)
+      + "&dates=" + gcalFmt(start) + "/" + gcalFmt(end)
+      + "&location=" + encodeURIComponent(CONFIG.venue + ' - ' + CONFIG.venueSub)
+      + "&details=" + encodeURIComponent('دعوة فرح كريم ومها — يسعدنا حضوركم');
+  }
+})();
+
 /* ---------- العد التنازلي ---------- */
 const target = new Date(CONFIG.dateISO).getTime();
 function pad(n){return String(n).padStart(2,'0')}
@@ -714,6 +918,26 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- بتلات ورد متطايرة ---------- */
+(function petals(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'petals'; wrap.setAttribute('aria-hidden','true');
+  const N = innerWidth < 620 ? 9 : 15;
+  for(let i=0;i<N;i++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    const sz = 9 + Math.random()*12;
+    p.style.left = (Math.random()*100) + 'vw';
+    p.style.width = sz + 'px'; p.style.height = sz + 'px';
+    p.style.animationDuration = (9 + Math.random()*9) + 's';
+    p.style.animationDelay = (-Math.random()*12) + 's';
+    p.style.setProperty('--dx', (Math.random()*160 - 80).toFixed(0) + 'px');
+    wrap.appendChild(p);
+  }
+  document.body.appendChild(wrap);
+})();
 
 /* ---------- ظهور عناصر الهيرو ---------- */
 function revealHero(){
@@ -774,28 +998,7 @@ form.addEventListener('submit', (e)=>{
 });
 
 /* ---------- إضافة للتقويم ---------- */
-document.getElementById('calendarBtn').addEventListener('click', ()=>{
-  const start = new Date(CONFIG.dateISO);
-  const end = new Date(start.getTime() + 5*3600000);
-  const fmt = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-  const ics = [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//KarimMaha//Wedding//AR','BEGIN:VEVENT',
-    'UID:' + Date.now() + '@karim-maha',
-    'DTSTAMP:' + fmt(new Date()),
-    'DTSTART:' + fmt(start),
-    'DTEND:' + fmt(end),
-    'SUMMARY:فرح ' + CONFIG.groom + ' و ' + CONFIG.bride,
-    'LOCATION:' + CONFIG.venue + ' - ' + CONFIG.venueSub,
-    'DESCRIPTION:يسعدنا حضوركم',
-    'END:VEVENT','END:VCALENDAR'
-  ].join('\r\n');
-  const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'karim-maha-wedding.ics';
-  a.click();
-  URL.revokeObjectURL(a.href);
-});
+document.getElementById('calendarBtn').addEventListener('click', calendarICS);
 
 /* ---------- زر الموسيقى ---------- */
 const bgm = document.getElementById('bgm');
@@ -833,7 +1036,7 @@ musicBtn.addEventListener('click', ()=>{
 
 /* ---------- الدخلة (فتح الدعوة) ---------- */
 const entrance = document.getElementById('entrance');
-const ENTER_MS = 1400;
+const ENTER_MS = 2400;
 let opened = false;
 
 function fadeIn(audio, target, ms){
@@ -853,27 +1056,29 @@ function heartBurst(){
   if(!env) return;
   const r = env.getBoundingClientRect();
   const cx = r.left + r.width/2, cy = r.top + r.height/2;
-  for(let i=0;i<18;i++){
+  const glyphs = ['\u2764','\u2764','\u2764','\u273F','\u2740','\u2606'];
+  for(let i=0;i<28;i++){
     const h = document.createElement('span');
     h.className = 'pop-heart';
-    h.textContent = '\u2764';
+    h.textContent = glyphs[(Math.random()*glyphs.length)|0];
     const ang = Math.random()*Math.PI*2;
-    const dist = 70 + Math.random()*160;
+    const dist = 80 + Math.random()*200;
     h.style.left = cx + 'px';
     h.style.top = cy + 'px';
-    h.style.fontSize = (11 + Math.random()*20) + 'px';
+    h.style.fontSize = (11 + Math.random()*22) + 'px';
     h.style.setProperty('--dx', (Math.cos(ang)*dist).toFixed(1) + 'px');
-    h.style.setProperty('--dy', (Math.sin(ang)*dist - 60).toFixed(1) + 'px');
+    h.style.setProperty('--dy', (Math.sin(ang)*dist - 70).toFixed(1) + 'px');
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(), 1750);
+    setTimeout(()=>h.remove(), 1900);
   }
 }
 function openInvitation(){
   if(opened) return; opened = true;
-  const seal = document.getElementById('openBtn'); if(seal) seal.classList.add('open');
   entrance.classList.add('open');
   heartBurst();
-  fireworks();
+  setTimeout(heartBurst, 640);
+  setTimeout(()=>{ fireworks(); }, 980);
+  setTimeout(heartBurst, 1450);
   fadeIn(bgm, .7, 3200);
   revealHero();
   setTimeout(()=>entrance.classList.add('done'), ENTER_MS);
@@ -896,7 +1101,7 @@ document.querySelectorAll('[data-rings]').forEach(el=> el.innerHTML = ringsSVG()
 
 /* ---------- عدّاد الحب ---------- */
 (function loveCounter(){
-  const start = new Date(CONFIG.loveStart || '2021-06-01').getTime();
+  const start = new Date(CONFIG.loveStart || '2026-07-24').getTime();
   const wed = new Date(CONFIG.dateISO).getTime();
   const now = Date.now();
   const a = document.getElementById('loveDays');
