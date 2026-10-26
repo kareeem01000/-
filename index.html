@@ -312,8 +312,10 @@ section.block{padding:clamp(84px,13vw,172px) 24px;position:relative}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
 /* ===================== REVEAL ===================== */
-.reveal{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(38px) scale(.985);filter:blur(7px);
+  transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1),filter .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+.reveal.in{will-change:auto}
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
 
 /* ===================== INVITATION ===================== */
@@ -663,7 +665,101 @@ body.time-night .mood-stars{opacity:1}
   .hero.choreo *{opacity:1!important;animation:none!important}
   .hero-glow,.aura,.hero-heart,.petals{display:none!important}
   .env-tilt{transform:none!important}
+  .reveal{filter:none!important;transform:none!important}
   .kicker{-webkit-text-fill-color:currentColor;color:var(--rose);background:none!important;animation:none!important}
+}
+
+/* ===================== PRO POLISH ===================== */
+@supports (text-wrap:balance){
+  .sec-head h2,.sec-head p,.invite-lead,.verse .q,.love-count{text-wrap:balance}
+}
+section[id],header[id]{scroll-margin-top:26px}
+:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:6px}
+.grain{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:.055;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px}
+@media (max-width:620px){ .grain{opacity:.04} }
+
+/* --- أزرار: مغناطيس + موجة --- */
+.btn,.submit,.share-btns .btn,.wish-refresh,.fab{position:relative;overflow:hidden;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),background .3s,color .3s,border-color .3s,box-shadow .3s}
+.btn:hover,.submit:hover{box-shadow:0 14px 34px rgba(185,106,125,.20)}
+.btn:active,.submit:active{transform:scale(.975)}
+.ripple{position:absolute;border-radius:50%;transform:scale(0);pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.85),rgba(255,255,255,.12) 70%);
+  animation:rippleGo .62s cubic-bezier(.2,.7,.3,1) forwards}
+.btn:not(.solid) .ripple,.share-btns .btn:not(.solid) .ripple,.wish-refresh .ripple{background:radial-gradient(circle,rgba(215,138,156,.55),rgba(215,138,156,.05) 70%)}
+@keyframes rippleGo{0%{transform:scale(0);opacity:.75}100%{transform:scale(2.4);opacity:0}}
+
+/* --- توست --- */
+.toasts{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:1200;display:flex;
+  flex-direction:column;gap:10px;align-items:center;pointer-events:none;width:min(92vw,420px)}
+.toast{display:flex;align-items:center;gap:12px;padding:13px 22px;border-radius:44px;
+  background:rgba(92,64,72,.94);color:#fff;font-size:14px;font-weight:400;line-height:1.7;
+  box-shadow:0 18px 44px rgba(92,64,72,.30);backdrop-filter:blur(10px);
+  animation:toastIn .45s cubic-bezier(.2,.9,.3,1.15) both;text-align:center}
+.toast.out{animation:toastOut .35s ease forwards}
+.toast i{font-style:normal;font-size:16px;color:#f7c6d2}
+@keyframes toastIn{0%{opacity:0;transform:translateY(22px) scale(.94)}100%{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(14px) scale(.96)}}
+
+/* --- حائط الأمنيات: شكل جديد --- */
+.wish-form{max-width:640px;margin:0 auto;text-align:right;padding:clamp(20px,3.6vw,34px);
+  border:1px solid var(--rose-line);border-radius:16px;background:rgba(255,255,255,.62);
+  box-shadow:0 22px 54px rgba(185,106,125,.12);backdrop-filter:blur(6px)}
+.wish-field{position:relative}
+.wish-field + .wish-field{margin-top:12px}
+.wish-form textarea{padding-bottom:34px}
+.wish-count{position:absolute;left:12px;bottom:9px;font-size:11px;letter-spacing:.5px;color:var(--muted);
+  font-family:var(--serif);transition:color .3s}
+.wish-count.warn{color:var(--rose-deep)}
+.wish-form .submit{margin-top:14px}
+.wish-form .submit[disabled]{opacity:.65;cursor:progress}
+.wish-form .submit .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.45);
+  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-inline-end:8px;vertical-align:-1px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wish-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  margin:clamp(30px,4.6vw,46px) 0 0}
+.wish-total{margin:0;color:var(--muted);font-size:13.5px;font-weight:300}
+.wish-total b{font-family:var(--serif);font-size:22px;color:var(--rose-deep);font-weight:500;margin:0 6px}
+.wish-refresh{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:40px;cursor:pointer;
+  border:1px solid var(--rose-line);background:rgba(255,255,255,.6);color:var(--rose-deep);
+  font-family:var(--arabic);font-size:12.5px;letter-spacing:.5px}
+.wish-refresh:hover{background:var(--rose-soft)}
+.wish-refresh.spinning i{animation:spin .8s linear infinite}
+.wish-wall{margin-top:22px}
+.wish-card{animation:wishIn .72s cubic-bezier(.2,.9,.3,1.08) both;animation-delay:calc(var(--i,0) * 65ms);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s}
+.wish-card:hover{box-shadow:0 20px 44px rgba(185,106,125,.18);border-color:var(--rose)}
+.wish-card::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--rose-2),transparent);opacity:.8}
+@keyframes wishIn{
+  0%{opacity:0;transform:translateY(26px) scale(.96)}
+  70%{opacity:1}
+  100%{opacity:1;transform:none}}
+.wish-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.wish-you{font-size:10.5px;letter-spacing:1px;color:var(--rose-deep);border:1px solid var(--rose-line);
+  border-radius:20px;padding:2px 9px;background:rgba(255,255,255,.7)}
+.wish-skel{height:132px;border-radius:10px;border:1px solid var(--rose-line);position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#fbe9ed,#f7dde4)}
+.wish-skel::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.75) 50%,transparent 70%);
+  transform:translateX(-100%);animation:skel 1.3s ease-in-out infinite}
+@keyframes skel{to{transform:translateX(100%)}}
+
+/* --- زر عائم للأمنيات --- */
+.fab{position:fixed;right:20px;bottom:22px;z-index:940;display:inline-flex;align-items:center;gap:9px;
+  padding:13px 22px;border-radius:44px;border:1px solid rgba(255,255,255,.35);cursor:pointer;
+  background:linear-gradient(135deg,#d78a9c,#b96a7d);color:#fff;font-family:var(--arabic);font-weight:500;
+  font-size:13.5px;letter-spacing:.4px;box-shadow:0 16px 40px rgba(185,106,125,.42);
+  opacity:0;transform:translateY(24px) scale(.9);pointer-events:none;
+  transition:opacity .45s ease,transform .45s cubic-bezier(.2,.9,.3,1.2)}
+.fab.show{opacity:1;transform:none;pointer-events:auto}
+.fab:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 22px 52px rgba(185,106,125,.5)}
+.fab b{font-size:16px;line-height:1}
+@media (max-width:620px){
+  .fab{right:14px;bottom:16px;padding:12px 18px;font-size:12.5px}
+  .wish-form{padding:18px 16px}
 }
 
 </style>
@@ -674,6 +770,8 @@ body.time-night .mood-stars{opacity:1}
 <div class="mood" aria-hidden="true"></div>
 <div class="mood-stars" id="moodStars" aria-hidden="true"></div>
 <div class="aura" id="aura" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
 
 
 <!-- ============ ENTRANCE (MINIMAL) ============ -->
@@ -884,15 +982,24 @@ body.time-night .mood-stars{opacity:1}
     <div class="sec-head reveal">
       <p class="kicker">Wishes Wall</p>
       <h2>حائط الأمنيات</h2>
-      <p>اكتب كلمة حلوة للعروسين… وهتتشال على حائط فرحتنا</p>
+      <p>اكتب كلمة حلوة للعروسين… وهتتشال على حائط فرحتنا وتشوفها كل الناس</p>
     </div>
     <form class="wish-form reveal d1" id="wishForm" autocomplete="off">
-      <input type="text" id="wishName" maxlength="40" placeholder="اسمك" aria-label="اسمك">
-      <textarea id="wishText" maxlength="240" placeholder="أمنيتك أو رسالتك للعروسين…" aria-label="أمنيتك"></textarea>
-      <button type="submit" class="submit">ثبّت أمنيتك على الحائط &#10084;</button>
+      <div class="wish-field">
+        <input type="text" id="wishName" maxlength="40" placeholder="اسمك" aria-label="اسمك">
+      </div>
+      <div class="wish-field">
+        <textarea id="wishText" maxlength="240" placeholder="أمنيتك أو رسالتك للعروسين…" aria-label="أمنيتك"></textarea>
+        <span class="wish-count" id="wishCount">٠ / ٢٤٠</span>
+      </div>
+      <button type="submit" class="submit" id="wishSubmit">ثبّت أمنيتك على الحائط &#10084;</button>
       <p class="form-msg" id="wishMsg"></p>
     </form>
-    <div class="wish-wall" id="wishWall"></div>
+    <div class="wish-head reveal d2">
+      <p class="wish-total"><b id="wishTotal">٠</b> أمنية على الحائط</p>
+      <button class="wish-refresh" id="wishRefresh" type="button" aria-label="تحديث الأمنيات"><i>&#8635;</i> تحديث</button>
+    </div>
+    <div class="wish-wall" id="wishWall" aria-live="polite"></div>
   </div>
 </section>
 
@@ -1022,6 +1129,9 @@ body.time-night .mood-stars{opacity:1}
   <small>13 مارس 2027 — كل الحب والامتنان لحضوركم الغالي</small>
 </footer>
 
+<!-- زر عائم سريع لحائط الأمنيات -->
+<button class="fab" id="wishFab" type="button"><b>&#10084;</b> اكتب أمنيتك</button>
+
 <!-- ============ ADMIN PANEL ============ -->
 <div class="admin" id="adminPanel">
   <div class="admin-inner">
@@ -1061,6 +1171,7 @@ const CONFIG = {
   whatsapp: "+201000889309",                 // رقم واتساب صاحب الفرح
   adminPassword: "karim2027",                // كلمة مرور لوحة المدعووين (غيّرها)
   sheetEndpoint: "https://script.google.com/macros/s/AKfycbyIxdcKmXJC5EINkIDRMJSlFqG3jexD33OYUbYic8AN52plylZeUaDh8t-cyZqkzsYx/exec",   // Google Apps Script: يجمع الأسماء من كل الأجهزة + إيميل فوري
+  wishesEndpoint: "",                        // سيبه فاضي = يستخدم نفس sheetEndpoint (السيناريو الموصى به)
   loveStart: "2026-07-24"                    // تاريخ بداية قصة الحب (لعدّاد الأيام في قسم الحب)
 };
 
@@ -1824,50 +1935,314 @@ if(location.hash === '#admin'){ window.addEventListener('load', ()=>setTimeout(o
   });
 })();
 
-/* ===================== حائط الأمنيات ===================== */
+/* ===================== أدوات واجهة: توست + موجة + مغناطيس ===================== */
+function toast(text, icon){
+  const wrap = document.getElementById('toasts');
+  if(!wrap) return;
+  while(wrap.children.length >= 2) wrap.removeChild(wrap.firstElementChild);
+  const el = document.createElement('div');
+  el.className = 'toast';
+  const ic = document.createElement('i'); ic.textContent = icon || '\u2764';
+  const sp = document.createElement('span'); sp.textContent = text;
+  el.appendChild(ic); el.appendChild(sp);
+  wrap.appendChild(el);
+  setTimeout(()=>{ el.classList.add('out'); setTimeout(()=>el.remove(), 420); }, 3800);
+}
+
+(function micro(){
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* موجة عند الضغط */
+  document.addEventListener('pointerdown', e=>{
+    if(reduce) return;
+    const el = e.target && e.target.closest ? e.target.closest('.btn, .submit, .wish-refresh, .fab') : null;
+    if(!el) return;
+    const r = el.getBoundingClientRect();
+    const d = Math.max(r.width, r.height) * 2;
+    const s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.width = s.style.height = d + 'px';
+    s.style.left = (e.clientX - r.left - d/2) + 'px';
+    s.style.top = (e.clientY - r.top - d/2) + 'px';
+    el.appendChild(s);
+    setTimeout(()=>s.remove(), 720);
+  }, {passive:true});
+  /* مغناطيس */
+  if(!reduce){
+    let mag = null;
+    document.addEventListener('pointermove', e=>{
+      const el = e.target && e.target.closest ? e.target.closest('.btn, .submit') : null;
+      if(mag && mag !== el){ mag.style.transform = ''; mag = null; }
+      if(!el) return;
+      mag = el;
+      const r = el.getBoundingClientRect();
+      if(!r.width || !r.height) return;
+      const dx = (e.clientX - (r.left + r.width/2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height/2)) / r.height;
+      el.style.transform = 'translate(' + (dx*7).toFixed(1) + 'px,' + (dy*5).toFixed(1) + 'px)';
+    }, {passive:true});
+  }
+})();
+
+/* ===================== زر عائم للأمنيات ===================== */
+(function wishFab(){
+  const fab = document.getElementById('wishFab');
+  const sec = document.getElementById('wishes');
+  if(!fab || !sec) return;
+  let raf = 0;
+  function upd(){
+    raf = 0;
+    const y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const vh = window.innerHeight || document.documentElement.clientHeight || 720;
+    const r = sec.getBoundingClientRect();
+    const inView = r.top < vh * 0.92 && r.bottom > vh * 0.08;
+    fab.classList.toggle('show', y > vh * 0.7 && !inView);
+  }
+  function ask(){ if(!raf) raf = requestAnimationFrame(upd); }
+  window.addEventListener('scroll', ask, {passive:true});
+  window.addEventListener('resize', ask);
+  document.addEventListener('scroll', ask, {passive:true, capture:true});
+  setInterval(upd, 900);
+  upd();
+  fab.addEventListener('click', ()=>{
+    sec.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(()=>{
+      const n = document.getElementById('wishName');
+      if(n) try{ n.focus({preventScroll:true}); }catch(_){}
+    }, 750);
+  });
+})();
+
+/* ===================== حائط الأمنيات (مشترك عبر Google Sheet) ===================== */
 (function wishes(){
   const form = document.getElementById('wishForm'); if(!form) return;
   const wall = document.getElementById('wishWall');
   const msg  = document.getElementById('wishMsg');
-  const KEY  = 'wishes_karim_maha';
+  const totalEl = document.getElementById('wishTotal');
+  const refreshBtn = document.getElementById('wishRefresh');
+  const submitBtn = document.getElementById('wishSubmit');
+  const nameInp = document.getElementById('wishName');
+  const textInp = document.getElementById('wishText');
+  const countEl = document.getElementById('wishCount');
+
+  const KEY   = 'wishes_karim_maha';
+  const IDKEY = 'wishes_mine';
+  const ENDPOINT = String(CONFIG.wishesEndpoint || CONFIG.sheetEndpoint || '').trim();
   const SEED = [
     { n:'أسرة كريم', t:'ربنا يبارك لكم ويجمع بينكم على خير دايماً ❤' },
     { n:'أسرة مها',  t:'عقبال ما نفرح بيكم ويسعدكم فرح ما يتعاش ❤' },
     { n:'أصدقاؤكم', t:'أجمل ليلة وأحلى بداية… يا كريم ومها ❤' }
   ];
-  function load(){
-    try{
-      const raw = localStorage.getItem(KEY);
-      if(raw){
-        const arr = JSON.parse(raw);
-        if(Array.isArray(arr) && arr.length) return arr;
-      }
-    }catch(_){}
-    return SEED.slice();
+  let remote = null;   // null = لسه ما وصلش/مش متاح
+  let busy = false;
+  let lastSig = '';
+
+  function readLocal(){
+    try{ const a = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(a) ? a : []; }
+    catch(_){ return []; }
   }
-  function save(arr){ try{ localStorage.setItem(KEY, JSON.stringify(arr)); }catch(_){} }
+  function writeLocal(a){
+    try{ localStorage.setItem(KEY, JSON.stringify(a.slice(-120))); }catch(_){}
+  }
+  function mineIds(){
+    try{ const a = JSON.parse(localStorage.getItem(IDKEY) || '[]'); return Array.isArray(a) ? a : []; }
+    catch(_){ return []; }
+  }
+  function addMine(id){
+    try{ const a = mineIds(); if(a.indexOf(id) < 0){ a.push(id); localStorage.setItem(IDKEY, JSON.stringify(a.slice(-120))); } }catch(_){}
+  }
   function escW(s){ return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-  function render(){
-    const arr = load();
-    if(!arr.length){ wall.innerHTML = '<p class="wish-empty">لسه مفيش أمنيات… كن أول واحد يكتب كلمة حلوة ❤</p>'; return; }
-    wall.innerHTML = arr.slice().reverse().map(w =>
-      '<div class="wish-card"><p class="wish-text">'+escW(w.t)+'</p><p class="wish-name">'+escW(w.n)+'</p></div>'
-    ).join('');
+  function keyOf(w){ return (w.n || '') + '|' + (w.t || ''); }
+
+  function merged(){
+    const local = readLocal();
+    const out = [];
+    const seen = {};
+    function push(w){
+      const k = keyOf(w);
+      if(!k.replace('|','').length) return;
+      if(seen[k]) return;
+      seen[k] = 1;
+      out.push(w);
+    }
+    if(remote && remote.length){
+      remote.forEach(push);
+      local.slice().reverse().forEach(push);
+    }else{
+      local.slice().reverse().forEach(push);
+    }
+    SEED.forEach(function(w, i){ push({ id:'seed'+i, n:w.n, t:w.t, seed:true }); });
+    return out;
   }
-  form.addEventListener('submit', e=>{
+
+  function setMsg(s){ if(msg) msg.textContent = s || ''; }
+  function updateCount(){
+    if(!countEl) return;
+    const n = (textInp.value || '').length;
+    countEl.textContent = n.toLocaleString('ar-EG') + ' / ٢٤٠';
+    countEl.classList.toggle('warn', n > 214);
+  }
+
+  function render(){
+    const arr = merged();
+    if(totalEl) totalEl.textContent = arr.length.toLocaleString('ar-EG');
+    if(!arr.length){
+      wall.innerHTML = '<p class="wish-empty">لسه مفيش أمنيات… كن أول واحد يكتب كلمة حلوة ❤</p>';
+      return;
+    }
+    const ids = mineIds();
+    wall.innerHTML = arr.map((w, i)=>{
+      const hasId = w.id && ids.indexOf(w.id) >= 0;
+      const badge = hasId ? '<span class="wish-you">أمنيتك</span>' : '';
+      return '<article class="wish-card" style="--i:'+Math.min(i,10)+'">'+
+        '<p class="wish-text">'+escW(w.t)+'</p>'+
+        '<div class="wish-meta"><p class="wish-name">'+escW(w.n)+'</p>'+badge+'</div>'+
+      '</article>';
+    }).join('');
+  }
+
+  function skeleton(){
+    wall.innerHTML = '<div class="wish-skel"></div><div class="wish-skel"></div><div class="wish-skel"></div>';
+  }
+
+  function setBusy(b){
+    busy = b;
+    if(!submitBtn) return;
+    submitBtn.disabled = b;
+    submitBtn.innerHTML = b
+      ? '<span class="spin"></span> بنثبّت أمنيتك…'
+      : 'ثبّت أمنيتك على الحائط \u2764';
+  }
+
+  function normalize(j){
+    const arr = Array.isArray(j) ? j
+      : (j && Array.isArray(j.wishes)) ? j.wishes
+      : (j && Array.isArray(j.data))   ? j.data
+      : null;
+    if(!arr) throw new Error('shape');
+    return arr.map(function(x, i){
+      return {
+        id: x.id || ('r' + i + '_' + (x.at || '')),
+        n: x.n || x.name || 'ضيف',
+        t: x.t || x.text || '',
+        at: x.at || x.time || ''
+      };
+    }).filter(function(w){ return w.t; });
+  }
+
+  async function fetchWishes(){
+    const url = ENDPOINT + (ENDPOINT.indexOf('?') >= 0 ? '&' : '?') + 'type=wishes&_=' + Date.now();
+    let ctrl = null, timer = 0;
+    try{
+      if(window.AbortController){
+        ctrl = new AbortController();
+        timer = setTimeout(()=>{ try{ ctrl.abort(); }catch(_){} }, 5000);
+      }
+      const r = await fetch(url, {cache:'no-store', signal: ctrl ? ctrl.signal : undefined});
+      if(!r.ok) throw new Error('http ' + r.status);
+      return normalize(await r.json());
+    }finally{
+      if(timer) clearTimeout(timer);
+    }
+  }
+
+  function jsonpWishes(){
+    return new Promise(function(resolve, reject){
+      const cb = '__wishCb' + Date.now() + Math.floor(Math.random()*999);
+      const s = document.createElement('script');
+      let done = false;
+      const t = setTimeout(function(){ fin(); reject(new Error('timeout')); }, 5500);
+      function fin(){
+        if(done) return; done = true;
+        clearTimeout(t);
+        try{ delete window[cb]; }catch(_){ window[cb] = undefined; }
+        if(s.parentNode) s.parentNode.removeChild(s);
+      }
+      window[cb] = function(data){ fin(); resolve(data); };
+      s.onerror = function(){ fin(); reject(new Error('jsonp')); };
+      s.src = ENDPOINT + (ENDPOINT.indexOf('?') >= 0 ? '&' : '?') + 'type=wishes&callback=' + cb + '&_=' + Date.now();
+      document.head.appendChild(s);
+    });
+  }
+
+  async function load(silent){
+    if(!ENDPOINT){ render(); return; }
+    if(refreshBtn) refreshBtn.classList.add('spinning');
+    let changed = true;
+    try{
+      let arr;
+      try{ arr = await fetchWishes(); }
+      catch(_){ arr = normalize(await jsonpWishes()); }
+      remote = arr;
+      const sig = arr.map(function(w){ return (w.id || '') + '|' + (w.n || '') + '|' + (w.t || ''); }).join('\n');
+      changed = sig !== lastSig;
+      lastSig = sig;
+    }catch(err){
+      remote = null;
+      if(!silent) toast('تعذّر تحديث الحائط دلوقتي — بتشوف اللي على جهازك', '\u26A0');
+    }finally{
+      if(refreshBtn) refreshBtn.classList.remove('spinning');
+      if(changed) render();
+    }
+  }
+
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
-    const n = document.getElementById('wishName').value.trim();
-    const t = document.getElementById('wishText').value.trim();
-    if(!n || !t){ msg.textContent = 'اكتب اسمك وأمنيتك الأول.'; return; }
-    const arr = load();
-    arr.push({ n:n, t:t, at:Date.now() });
-    save(arr);
+    if(busy) return;
+    const n = (nameInp.value || '').trim();
+    const t = (textInp.value || '').trim();
+    if(!n || !t){
+      setMsg('اكتب اسمك وأمنيتك الأول.');
+      if(!n) nameInp.focus(); else textInp.focus();
+      return;
+    }
+    setMsg('');
+    const rec = { id: 'l' + Date.now() + Math.random().toString(36).slice(2,7), n: n, t: t, at: new Date().toISOString() };
+    const local = readLocal(); local.push(rec); writeLocal(local); addMine(rec.id);
     render();
     form.reset();
-    msg.textContent = 'ثبّتنا أمنيتك على الحائط ❤ شكراً ليك!';
-    setTimeout(()=>{ msg.textContent = ''; }, 5000);
+    updateCount();
+    toast('أمنيتك اتثبّتت على الحائط… شكراً ليك ❤', '\u2764');
+
+    if(!ENDPOINT) return;
+    setBusy(true);
+    try{
+      await fetch(ENDPOINT, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'wish', name: n, text: t, at: rec.at })
+      });
+      setTimeout(function(){ load(true); }, 1400);
+    }catch(err){
+      toast('محفوظة على جهازك — هتترفع أول ما النت يرجع', '\u26A0');
+    }finally{
+      setBusy(false);
+    }
   });
-  render();
+
+  if(refreshBtn){
+    refreshBtn.addEventListener('click', function(){
+      load(false);
+      setTimeout(function(){ toast('تم تحديث الحائط', '\u21BB'); }, 900);
+    });
+  }
+  if(textInp){
+    textInp.addEventListener('input', updateCount);
+  }
+
+  updateCount();
+  if(ENDPOINT){ render(); load(true); }
+  else { render(); }
+
+  /* تحديث تلقائي هادي كل ٤٥ ثانية (لما الصفحة تكون ظاهرة) */
+  if(ENDPOINT){
+    setInterval(function(){
+      if(document.hidden || busy) return;
+      load(true);
+    }, 45000);
+    document.addEventListener('visibilitychange', function(){
+      if(!document.hidden && !busy) load(true);
+    });
+  }
 })();
 
 /* ===================== تذكرة الضيف (PNG) ===================== */
